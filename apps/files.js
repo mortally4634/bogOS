@@ -2,7 +2,7 @@
 /* Files — a graphical browser over the bogo filesystem. Entries appear in whatever
    order the filesystem is in; the Sort button reorganizes with the active algorithm. */
 (window.APPS = window.APPS || {}).files = {
-  title: "Files", glyph: "🗂",
+  title: "Files", glyph: "F",
   launch(){ WM.open({ title: "Files", icon: "🗂", w: 520, h: 360, mount: mountFiles }); }
 };
 
@@ -14,7 +14,7 @@ function mountFiles(body){
       <button data-a="up">↑ Up</button>
       <button data-a="mkdir">+ Folder</button>
       <button data-a="touch">+ File</button>
-      <button data-a="sort">⤮ Sort</button>
+      <button data-a="sort">Sort</button>
       <select class="algo"></select>
       <span class="path"></span>
     </div>
@@ -39,7 +39,7 @@ function mountFiles(body){
     items.forEach(e => {
       const d = document.createElement("div");
       d.className = "icon"; d.style.width = "88px"; d.tabIndex = 0;
-      d.innerHTML = `<span class="glyph">${e.type==="dir"?"📁":"📄"}</span><span class="lbl" data-name="${esc(e.name)}">${esc(e.name)}</span>`;
+      d.innerHTML = `<span class="glyph">${e.type==="dir"?"▸":"·"}</span><span class="lbl" data-name="${esc(e.name)}">${esc(e.name)}</span>`;
       d.ondblclick = () => {
         if(e.type==="dir"){ path = path.concat(e.name); render(); }
         else APPS.editor.launch("/" + path.concat(e.name).join("/"));

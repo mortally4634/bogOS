@@ -1,7 +1,7 @@
 "use strict";
 /* System Monitor — uptime, the active sorter, and the processes keeping bogOS busy. */
 (window.APPS = window.APPS || {}).monitor = {
-  title: "Monitor", glyph: "📈",
+  title: "Monitor", glyph: "M",
   launch(){ WM.open({ title: "System Monitor", icon: "📈", w: 420, h: 320, mount: mountMonitor }); }
 };
 

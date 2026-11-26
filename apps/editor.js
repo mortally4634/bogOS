@@ -1,7 +1,7 @@
 "use strict";
 /* Text Editor — edit files stored in the bogo filesystem. */
 (window.APPS = window.APPS || {}).editor = {
-  title: "Editor", glyph: "✎",
+  title: "Editor", glyph: "E",
   launch(filePath){
     WM.open({ title: filePath ? "Editor — " + filePath : "Editor", icon: "✎", w: 480, h: 340,
       mount: (body, win) => mountEditor(body, win, filePath) });
@@ -13,10 +13,10 @@ function mountEditor(body, win, filePath){
   if(filePath){ try{ content = FS.read(filePath); }catch(e){ /* new/unknown file */ } }
   body.innerHTML = `<div style="height:100%;display:flex;flex-direction:column">
     <div class="toolbar">
-      <button data-a="save">💾 Save</button>
+      <button data-a="save">Save</button>
       <input class="fn" placeholder="/path/to/file.txt" value="${(filePath||"").replace(/"/g,'&quot;')}" style="flex:1;padding:3px 7px">
     </div>
-    <textarea class="ed" spellcheck="false" style="flex:1;border:0;border-radius:0;padding:10px;resize:none;background:#06120f"></textarea>
+    <textarea class="ed" spellcheck="false" style="flex:1;border:0;border-radius:0;padding:10px;resize:none;background:var(--field);font-family:var(--mono)"></textarea>
     <div class="st" style="padding:5px 10px;border-top:1px solid var(--line);color:var(--dim);font-size:11px"></div>
   </div>`;
   const ta = body.querySelector(".ed"), fn = body.querySelector(".fn"), st = body.querySelector(".st");

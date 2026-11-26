@@ -2,7 +2,7 @@
 /* Sort Visualizer — animates each algorithm on a bar chart so you can see why
    bogo sort is a catastrophe and quicksort is not. */
 (window.APPS = window.APPS || {}).visualizer = {
-  title: "Sorter", glyph: "📊",
+  title: "Sorter", glyph: "S",
   launch(){ WM.open({ title: "Sort Visualizer", icon: "📊", w: 560, h: 400, mount: mountVisualizer }); }
 };
 
@@ -11,11 +11,12 @@ function mountVisualizer(body){
     <div class="toolbar">
       <select class="algo"></select>
       <label style="color:var(--dim);font-size:11px">n <input class="n" type="range" min="6" max="48" value="22" style="vertical-align:middle"></label>
-      <button data-a="shuffle">⤮ Shuffle</button>
-      <button data-a="go">▶ Sort</button>
+      <button data-a="shuffle">Shuffle</button>
+      <button data-a="go">Sort</button>
+      <label style="color:var(--dim);font-size:11px"><input type="checkbox" class="never" style="vertical-align:middle"> never give up</label>
       <span class="stat path"></span>
     </div>
-    <div class="bars" style="flex:1;display:flex;align-items:flex-end;gap:2px;padding:12px;background:#06120f"></div>
+    <div class="bars" style="flex:1;display:flex;align-items:flex-end;gap:2px;padding:12px;background:var(--field)"></div>
   </div>`;
   const barsEl = body.querySelector(".bars"), sel = body.querySelector(".algo"),
         nEl = body.querySelector(".n"), stat = body.querySelector(".stat");
@@ -66,7 +67,7 @@ function mountVisualizer(body){
 
   function playBogo(name){
     // live shuffling until sorted or it gives up (bogobogo gives up far sooner, as a mercy)
-    const CAP = name==="bogobogo" ? 8000 : 300000;
+    const CAP = body.querySelector(".never").checked ? Infinity : (name==="bogobogo" ? 8000 : 300000);
     let steps = 0; running = true;
     const tick = () => {
       if(!running) return;

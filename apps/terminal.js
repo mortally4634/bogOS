@@ -1,7 +1,7 @@
 "use strict";
 /* Terminal app — a shell over the bogo filesystem. */
 (window.APPS = window.APPS || {}).terminal = {
-  title: "Terminal", glyph: "▓",
+  title: "Terminal", glyph: "T",
   launch(){
     WM.open({ title: "Terminal", icon: "▓", w: 560, h: 360, mount: mountTerminal });
   }
